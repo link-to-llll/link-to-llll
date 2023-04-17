@@ -1,6 +1,10 @@
 class CreateShippingAddresses < ActiveRecord::Migration[6.1]
   def change
     create_table :shipping_addresses do |t|
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/develop
       t.integer :customer_id
       t.string :name
       t.string :address

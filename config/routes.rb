@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  # root to: "homes#top"
+  # get "home/about"=>"homes#about"
+  get 'about' => 'public/homes#about'
+  
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {

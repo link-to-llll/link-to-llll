@@ -1,1 +1,9 @@
+<h1>管理者注文履歴一覧</h1>
+
+<%= @orders.each do |order| %>
+  <p>商品名</p>
+  <span><%= order.shipping_name %></span>  
+<% end %>
+
 <h2>admin top</h2>
+  <%= link_to 'index / ユーザ一覧', admin_customers_path %>

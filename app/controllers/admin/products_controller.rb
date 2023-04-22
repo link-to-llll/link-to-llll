@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_action :set_product, only: [:index, :new, :create, :show, :edit, :update]
+  before_action :set_product, only: [:index, :create, :show, :edit, :update]
   before_action :set_genres, only: [:index, :create, :edit, :update]
   before_action :authenticate_admin!
 
@@ -9,6 +9,7 @@ class Admin::ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @genres = Genre.all
   end
 
   def create
@@ -36,9 +37,6 @@ class Admin::ProductsController < ApplicationController
 
   private
 
-  def set_product
-    @product = Product.find(params[:id])
-  end
 
   def product_params
     params.require(:product).permit(:name, :genre_id, :price, :explanation, :status, :image)

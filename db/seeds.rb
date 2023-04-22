@@ -24,3 +24,5 @@ Order.create(
   genre_id: 1
   name: '焼き菓子'
   price: '300')
+
+Genre.create!(name: '焼き菓子')

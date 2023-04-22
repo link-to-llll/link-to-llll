@@ -1,0 +1,25 @@
+<h2>管理者インデックス / カスタマー一覧</h2>
+
+<% @customers.each do |customer| %>
+  <table>
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>mail</th>
+        <th>status</th>
+        <th>詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= customer.family_name %> <%= customer.personal_name %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.status ? "有効" : "退会" %></td>
+        <td><%= link_to 'Show', admin_customer_path(customer) %></td>
+      </tr>  
+    </tbody>
+  </table>
+<% end %>
+
+
+

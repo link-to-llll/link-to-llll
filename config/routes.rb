@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # root to: "homes#top"
   # get "home/about"=>"homes#about"
   get 'about' => 'public/homes#about'
@@ -27,6 +26,6 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'home/top'=>'homes#top'
     resources :products, only: [:new, :show, :index, :create, :edit, :update, :destroy]
-
+    resources :genres, only: [:index, :edit, :create, :update]
   end
 end

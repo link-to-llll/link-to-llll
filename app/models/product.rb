@@ -1,5 +1,8 @@
 class Product < ApplicationRecord
-
+  
+  #hashimoto-branch
+  belongs_to :genre
+ 
   #furunagayuta
   has_many :cart_items
   has_many :order_product
@@ -14,5 +17,5 @@ class Product < ApplicationRecord
    validates :stock
    validates :image
   end
- 
+
 end

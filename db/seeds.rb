@@ -7,6 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create!(email: 'admin@admin',password: 'testtest')
 
+#hashimoto-branch
+Genre.create!(name: 'cake')
+Genre.create!(name: 'pudding')
+Genre.create!(name: 'baked goods')
+Genre.create!(name: 'candy')
+
 # 最新の注文は個別で作る
 Order_product.create(
   quantity: 2,

@@ -7,6 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create!(email: 'admin@admin',password: 'testtest')
 
+
+
+
+
+  Product.create!(
+  genre_id: 1,
+  name: 'ケーキ',
+  explanation: '甘い',
+  price: '200',
+  status: true)
+
 #hashimoto-branch
 Genre.create!(name: 'cake')
 Genre.create!(name: 'pudding')
@@ -22,13 +33,13 @@ Order_product.create(
   product_id: 1)
 
 Order.create(
-  shipping_name: kyariy
+  shipping_name: kyariy,
   customer_id: 3,
   product_id: 1)
 
   Product.create(
-  genre_id: 1
-  name: '焼き菓子'
+  genre_id: 1,
+  name: '焼き菓子',
   price: '300')
 
 Genre.create!(name: '焼き菓子')

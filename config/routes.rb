@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'orders/new'
+  end
   # root to: "homes#top"
   # get "home/about"=>"homes#about"
   get 'about' => 'public/homes#about'
@@ -15,9 +18,6 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
-   devise_scope :admin do
-  get 'admin/sign_out' => 'admin/sessions#destroy'
- end
 
   devise_scope :admin do
     get 'admin/sign_out' => 'admin/sessions#destroy'
@@ -25,16 +25,22 @@ Rails.application.routes.draw do
 
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   scope module: :public do
-   root to: "homes#top"
-   get "home/about"=> 'homes#about'
-   resources :products, only: [:show, :index]
-   resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
+    root to: "homes#top"
+    get "home/about"=> 'homes#about'
+    resources :products, only: [:show, :index]
+
+    resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :orders
+    get 'orders/log', to: 'public/orders#log'
+    get 'orders/thanks', to: 'public/orders#thanks'
   end
 
   namespace :admin do
     get 'home/top'=>'homes#top'
     resources :products, only: [:new, :show, :index, :create, :edit, :update, :destroy]
+    
 
     #hashimoto-branch
     resources :genres, only: [:index, :edit, :create, :update]

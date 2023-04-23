@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'home/top'=>'homes#top'
     resources :products, only: [:new, :show, :index, :create, :edit, :update, :destroy]
+    
 
     #hashimoto-branch
     resources :genres, only: [:index, :edit, :create, :update]

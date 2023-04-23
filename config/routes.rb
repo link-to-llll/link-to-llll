@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'orders/new'
+  end
   # root to: "homes#top"
   # get "home/about"=>"homes#about"
   get 'about' => 'public/homes#about'
@@ -27,6 +30,9 @@ Rails.application.routes.draw do
    get "home/about"=> 'homes#about'
    resources :products, only: [:show, :index]
    resources :shipping_addresses, only: [:index, :create]
+   resources :orders
+   get 'orders/log', to: 'public/orders#log'
+   get 'orders/thanks', to: 'public/orders#thanks'
   end
 
   namespace :admin do

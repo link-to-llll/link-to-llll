@@ -29,7 +29,7 @@ Rails.application.routes.draw do
    root to: "homes#top"
    get "home/about"=> 'homes#about'
    resources :products, only: [:show, :index]
-   resources :shipping_addresses, only: [:index, :create]
+   resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
   end
 
   namespace :admin do

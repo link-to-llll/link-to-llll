@@ -1,9 +1,6 @@
 <div class="container">
-  <div class="row no-gutters">
-    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-				商品名　　　　　<%= @product.name %>
-
-	  </div>
+　<h2 class="head-line title_h2 text-center admin_product_index">商品詳細</h2>
+　　<div class="row">
 	  <table class='table'>
 	  <tr>
 	  <div id="img_field">
@@ -45,6 +42,5 @@
 	      		<%= link_to "編集する", edit_admin_product_path(@product), data: {"turbolinks" => false}, class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
 	      		</tr>
 	      		</table>
-     	</div>
     </div>
   </div>

@@ -1,7 +1,7 @@
+<div class="container">
 <h2 class="head-line title_h2 text-center admin_product_index">商品一覧</h2>
-
 <div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
+  <div>
     <%= link_to new_admin_product_path, data: { turbolinks: false }, class: "btn btn-warning pull-right new_product" do %>
       <i class="fas fa-plus"></i>
       新規商品登録
@@ -12,6 +12,7 @@
         <tr>
           <th>商品ID</th>
           <th>商品名</th>
+          <th>商品画像</th>
           <th>税抜価格</th>
           <th>ジャンル</th>
           <th>ステータス</th>
@@ -26,6 +27,9 @@
                 <%= product.name %>
               <% end %>
             </td>
+            <td>
+	            <%= image_tag product.image, size: '300x200' %>
+	          </td>
             <td class="text-right"><%= number_to_currency(product.price, unit: "¥") %></td>
             <td><%= product.genre.name %></td>
             <td>
@@ -39,9 +43,6 @@
         <% end %>
       </tbody>
     </table>
-
-    <div class="text-center">
-      <%= paginate @products %>
     </div>
   </div>
 </div>

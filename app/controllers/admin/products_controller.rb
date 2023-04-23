@@ -1,6 +1,6 @@
 class Admin::ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update]
-  before_action :set_genres, only: [:index, :create, :edit, :update]
+  before_action :set_genres, only: [:index, :edit, :create, :update]
   before_action :authenticate_admin!
 
   def index
@@ -49,7 +49,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def set_genres
-    @genres = Genre.where(is_valid: true)
+    @genres = Genre.all
   end
 
 end

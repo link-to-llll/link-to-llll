@@ -25,14 +25,16 @@ Rails.application.routes.draw do
 
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   scope module: :public do
-   root to: "homes#top"
-   get "home/about"=> 'homes#about'
-   resources :products, only: [:show, :index]
-   resources :shipping_addresses, only: [:index, :create]
-   resources :orders
-   get 'orders/log', to: 'public/orders#log'
-   get 'orders/thanks', to: 'public/orders#thanks'
+    root to: "homes#top"
+    get "home/about"=> 'homes#about'
+    resources :products, only: [:show, :index]
+
+    resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :orders
+    get 'orders/log', to: 'public/orders#log'
+    get 'orders/thanks', to: 'public/orders#thanks'
   end
 
   namespace :admin do

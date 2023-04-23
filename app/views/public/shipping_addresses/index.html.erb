@@ -1,0 +1,34 @@
+ <h2>配送先指定画面</h2>
+
+<%= form_with model:@shipping_address do |f| %>
+  <div class="form-group">
+     <%= f.label :宛名 %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group">
+     <%= f.label :配送先郵便番号 %><br>
+    <%= f.text_field :post_code %>
+  </div>
+  <div class="form-group">
+     <%= f.label :配送先住所 %><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="form-group">
+    <%= f.submit '登録' %>
+  </div>
+<% end %>
+
+
+
+
+ <% @shipping_addresses.each do |shipping_addresses| %>
+ <p>登録内容</p>
+  <p>宛名</p>
+  <span><%= shipping_addresses.name %></span>
+  <p>郵便番号</p>
+  <span><%= shipping_addresses.post_code %></span>
+  <p>住所</p>
+  <span><%= shipping_addresses.address %></span>
+  <%= link_to '編集', edit_shipping_address_path(shipping_addresses) %>
+  <%= link_to '削除', shipping_address_path(shipping_addresses), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+  <% end %>

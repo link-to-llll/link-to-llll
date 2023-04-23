@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_action :set_product, only: [:index, :create, :show, :edit, :update]
+  before_action :set_product, only: [:show, :edit, :update]
   before_action :set_genres, only: [:index, :create, :edit, :update]
   before_action :authenticate_admin!
 
@@ -15,8 +15,10 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
+      flash[:notice] = "新商品を登録しました"
       redirect_to admin_product_path(@product)
     else
+      @genres = Genre.all
       render :new
     end
   end
@@ -40,6 +42,10 @@ class Admin::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :genre_id, :price, :explanation, :status, :image)
+  end
+  
+  def set_product
+    @product = Product.find(params[:id])
   end
 
   def set_genres

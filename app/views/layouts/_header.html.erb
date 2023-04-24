@@ -62,18 +62,6 @@
        
           <% else %>
 
-            <li class="nav-item">
-              <%= link_to new_customer_registration_path,class: 'nav-link text-light' do %>
-                <i class="fas fa-user-plus"></i> Sign up
-              <% end %>
-            </li>
-            
-            <li class="nav-item">
-              <%= link_to new_customer_session_path ,class: 'nav-link text-light' do %>
-                <i class="fas fa-sign-in-alt"></i> Log in
-              <% end %>
-            </li>
-            
             <!-- About 追記2023/04/22　18：30 suzuki -->
             <li class="nav-item">
               <%= link_to home_about_path ,class: 'nav-link text-light' do %>
@@ -85,6 +73,20 @@
             <li class="nav-item">
               <%= link_to products_path ,class: 'nav-link text-light' do %>
                 <i class="fab fa-product-hunt"></i> Products
+              <% end %>
+            </li>
+
+            <!--新規登録 -->
+            <li class="nav-item">
+              <%= link_to new_customer_registration_path,class: 'nav-link text-light' do %>
+                <i class="fas fa-user-plus"></i> Sign up
+              <% end %>
+            </li>
+            
+            <!-- ログイン -->
+            <li class="nav-item">
+              <%= link_to new_customer_session_path ,class: 'nav-link text-light' do %>
+                <i class="fas fa-sign-in-alt"></i> Log in
               <% end %>
             </li>
 

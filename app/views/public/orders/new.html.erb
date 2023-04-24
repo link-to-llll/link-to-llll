@@ -1,9 +1,46 @@
 <h1>注文情報入力</h1>
+
+<%= form_with model: @order, url: orders_log_path, method: :get,local: true do |f| %>
+	<%= f.label :payment, "支払い方法" %>
+	<br>
+	<%= f.radio_button :payment,:クレジットカード,  checked: "checked" %>
+	<%= f.label :payment, "クレジットカード" %>
+	<br>
+	<%= f.radio_button :payment, :銀行振込 %>
+	<%= f.label :payment, "銀行振込" %>
+	<br>
+	<%= f.label :address, "お届け先" %>
+	<br>
+	<%= f.label :order_address, "ご自身の住所" %>
+	<%= @order.postage %>
+	<%= @order.shipping_postal_code %>
+	<br>
+	<%= f.radio_button :shipping_postal_code_option, 1 %>
+	<%= f.label :shipping_postal_code, "登録済住所から選択" %>
+	<%= f.collection_select :shipping_postal_code , current_customer.shipping_addresses, :id, :shipping_postal_code , :include_blank => "選択してください" %>
+
+	<br>
+	<%= f.radio_button :address_option, 2 %>
+	<%= f.label :order_address, "新しいお届け先" %>
+	<br>
+
+	<%= f.label :postal_code, "郵便番号" %>
+	<%= f.text_field :postal_code %>
+	<br>
+
+	<%= f.label :order_address, "住所" %>
+	<%= f.text_field :order_address %>
+	<br>
+
+	<%= f.submit "確認画面へ進む" , class:"btn btn-primary" %>
+
+<% end %>
+
+
   <table>
-    <!--エラー-->
-    <!--<tr><th>支払い方法</th><td><%#= @order.payment_option %></td></tr>
-    <tr><th>お届け先</th><td><%#= "〒#{@order.shipping_postcode}" %><br><%#= @order.shipping_address %><br><%#= @order.shipping_name %></td></tr>-->
-  </table>
+    <!--<tr><th>支払い方法</th><td><%#=@order.payment_method %></td></tr>
+    <tr><th>お届け先</th><td><%#= "〒#{@order.shipping_postal_code}" %><br><%#= @order.shipping_address %><br><%#= @order.shipping_name %></td></tr>
+  </table>-->
 
 
- <%= link_to "注文を確定する",orders_thanks_path %>
+ <%#= link_to "注文を確定する",orders_thanks_path %>

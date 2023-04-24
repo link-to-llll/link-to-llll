@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row my-3"><div class="col-sm-10 offset-sm-1"><h2>注文確認画面</h2></div></div>
   <div class="row">
@@ -27,8 +26,8 @@
       </table>
 
       <table class="table table-borderless">
-        <tr><th>支払い方法</th><td><%= @order.payment_option %></td></tr>
-        <tr><th>お届け先</th><td><%= "〒#{@order.shipping_postcode} #{@order.shipping_address} #{@order.shipping_name}" %></td></tr>
+        <tr><th>支払い方法</th><td><%= @order.payment_method %></td></tr>
+        <tr><th>お届け先</th><td><%= "〒#{@order.shipping_postal_code} #{@order.shipping_address} #{@order.shipping_name}" %></td></tr>
       </table>
     </div>
     <div class="col-sm-3">
@@ -42,11 +41,11 @@
   <div class="row">
     <div class="col-sm-10 px-sm-0 mx-auto">
       <%= form_with model: @order,  local:true do |f| %>
-        <%= f.hidden_field :shipping_postcode, :value => @order.shipping_postcode %>
+        <%= f.hidden_field :shipping_postcode, :value => @order.shipping_postal_code %>
         <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
         <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
         <%= f.hidden_field :total_payment, :value => @total_billing_amount %>
-        <%= f.hidden_field :payment_option, :value => @order.payment_option %>
+        <%= f.hidden_field :payment_option, :value => @order.payment_method %>
         <div class="text-center mb-3"><%= f.submit "注文を確定する", class: "btn btn-success" %></div>
       <% end %>
     </div>

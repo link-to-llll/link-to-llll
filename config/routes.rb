@@ -33,7 +33,11 @@ Rails.application.routes.draw do
 
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :orders
-    resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+      collection do
+        delete "all_destroy"   #パスが　all_destroy_cart_items_path, method: :delete
+      end
+    end
     get 'orders/log', to: 'public/orders#log'
     get 'orders/thanks', to: 'public/orders#thanks'
 

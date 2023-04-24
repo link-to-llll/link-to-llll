@@ -1,26 +1,24 @@
-<h2>管理者インデックス / カスタマー一覧</h2>
-
-<% @customers.each do |customer| %>
-  <table>
-    <thead>
+<div class="container">
+  <table class="table">
+    <h2>管理者インデックス / カスタマー一覧</h2>
+    <thead class="thead-light">
       <tr>
-        <th>name</th>
-        <th>mail</th>
-        <th>status</th>
-        <th>詳細</th>
+        <th scope="col">name</th>
+        <th scope="col">mail</th>
+        <th scope="col">status</th>
+        <th scope="col">詳細</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><%= customer.family_name %> <%= customer.personal_name %></td>
-        <td><%= customer.email %></td>
-        <td><%= customer.status ? "有効" : "退会" %></td>
-        <td><%= link_to 'Show', admin_customer_path(customer) %></td>
-      </tr>  
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.family_name %> <%= customer.personal_name %></td>
+          <td><%= customer.email %></td>
+          <td><%= customer.status ? "有効" : "退会" %></td>
+          <td><%= link_to 'ユーザ詳細', admin_customer_path(customer), class: "btn btn-primary" %></td>
+        </tr>  
+      <% end %>
     </tbody>
   </table>
-<% end %>
-
-<br>
-
-<%= link_to '管理者TOP', admin_home_top_path %>
+  <%= link_to '管理者TOP', admin_home_top_path, class: "btn btn-secondary me-2" %>
+</div>

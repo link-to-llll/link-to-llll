@@ -1,14 +1,49 @@
-<h1>商品一覧</h1>
+<div class="container">
+  <h2 class="head-line title_h2 text-center admin_product_index">商品一覧</h2>
+  <div class="row">
+    <div>
+      <%= link_to new_admin_product_path, data: { turbolinks: false }, class: "btn btn-warning pull-right new_product" do %>
+      <i class="fas fa-plus"></i>
+      新規商品登録
+      <% end %>
 
-<%= @products.each do |product| %>
-  <p>ジャンル</p>
-  <span><%= product.genre_id %></span>
-  <p>商品名</p>
-  <span><%= product.name %></span>
-  <p>価格</p>
-  <span><%=  product.price %></span>
-  <p>ステータス</p>
-  <span><%= product.status %></span>
-  <%= link_to 'Show', product_path(@product) %>
-<% end %>
+      <table class="table table-hover table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>商品画像</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+          <tr>
+            <td><%= product.id %></td>
+            <td class="text-left">
+              <%= link_to product_path(product), class: "btn-link" do %>
+                <%= product.name %>
+              <% end %>
+            </td>
+            <td>
+	            <%= image_tag product.image, size: '300x200' %>
+	          </td>
+            <td class="text-right"><%= number_to_currency(product.price, unit: "¥") %></td>
+            <td><%= product.genre.name %></td>
+            <td>
+              <% if product.status == true %>
+                <p><i class="fas fa-bullseye red"></i>販売中</p>
+              <% elsif product.status == false %>
+                <p><i class="fas fa-bullseye blue"></i>販売停止中</p>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 

@@ -26,8 +26,9 @@ before_action :authenticate_customer!
   end
 
   def update
-    if @cart_items.update(cart_items_params)
-      redirect_to admin_product_path(@product)
+      @cart_items = CartItem.find(params[:id])
+       if @cart_items.update(cart_item_params)
+      redirect_to cart_items_path
     else
       render :edit
     end

@@ -14,7 +14,6 @@ class Product < ApplicationRecord
    validates :name
    validates :explanation
    validates :price
-   validates :status
    validates :image
   end
 

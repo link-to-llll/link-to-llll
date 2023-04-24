@@ -1,9 +1,9 @@
-<%= form_with model: @product, url:admin_product_path do |f| %>
+<%= form_with model: @product, url:admin_product_path, local: true do |f| %>
   <div class='container'>
     <div class='row'>
       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
         <h1>商品編集</h1>
-        
+
         <%= render "admin/shared/error_messages", resource: @product %>
 
         <div class="form-group">
@@ -31,7 +31,7 @@
           <%= f.select :status, [['販売中', true], ['販売停止', false]], prompt: "-- 選択してください --", class: "col-sm-9 is_sale" %>
         </div>
         <%= f.submit '更新', class: "btn btn-primary" %>
-
+        <%= link_to "削除", admin_product_path(@product), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
       </div>
     </div>
   </div>

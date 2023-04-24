@@ -32,13 +32,24 @@ Rails.application.routes.draw do
     resources :products, only: [:show, :index]
 
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
-    resources :orders, only: [:new, :index, :create, :edit]
+
     get 'orders/log', to: 'orders#log'
     get 'orders/thanks', to: 'orders#thanks'
+    
+    resources :orders
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+      collection do
+        delete "all_destroy"   #パスが　all_destroy_cart_items_path, method: :delete
+      end
+    end
+    get 'orders/log', to: 'public/orders#log'
+    get 'orders/thanks', to: 'public/orders#thanks'
+ 
   end
 
   namespace :admin do
-    get 'home/top'=>'homes#top'
+    root to: 'homes#top'
+    get "home/top"=> 'homes#top'
     resources :products, only: [:new, :show, :index, :create, :edit, :update, :destroy]
 
 

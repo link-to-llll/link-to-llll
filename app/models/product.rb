@@ -4,7 +4,7 @@ class Product < ApplicationRecord
   belongs_to :genre
 
   #furunagayuta
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
   has_many :order_product
 
   has_one_attached :image

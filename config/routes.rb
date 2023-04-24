@@ -33,8 +33,10 @@ Rails.application.routes.draw do
 
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :orders
+    resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
     get 'orders/log', to: 'public/orders#log'
     get 'orders/thanks', to: 'public/orders#thanks'
+    
   end
 
   namespace :admin do

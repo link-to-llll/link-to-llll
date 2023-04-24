@@ -1,42 +1,55 @@
-<h2>Admin Edit / ユーザ情報変更</h2>
-
-<%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
-  
-  <label for="family_name">姓</label><br>
-  <%= f.text_field :family_name, autofocus: true, id:"family_name" %><br>
-  
-  <label for="personal_name">名</label><br>
-  <%= f.text_field :personal_name, autofocus: true, id:"personal_name" %><br>
-
-  <label for="family_name_kana">セイ</label><br>
-  <%= f.text_field :family_name_kana, autofocus: true, id:"family_name_kana" %><br>
-  
-  <label for="personal_name_kana">メイ</label><br>
-  <%= f.text_field :personal_name_kana, autofocus: true, id:"personal_name_kana" %><br>
-  
-  <label for="post_code">郵便番号</label><br>
-  <%= f.text_field :post_code, autofocus: true, id:"post_code" %><br>
-  
-  <label for="address">住所</label><br>
-  <%= f.text_field :address, autofocus: true, id:"address" %><br>
-  
-  <label for="email">email</label><br>
-  <%= f.text_field :email, autofocus: true, id:"email" %><br>
-  
-  <label for="phone_number">電話番号</label><br>
-  <%= f.text_field :phone_number, autofocus: true, id:"phone_number" %><br>
-  
-  <%= f.radio_button :status, true %>
-  <%= f.label :status_true, "有効" %>
-
-  <%= f.radio_button :status, false %>
-  <%= f.label :status_false, "退会" %>
-  <br>
-  <%= f.submit "Update User" %>
-
-<% end %>
-
-<br>
-<br>
-
-<%= link_to 'index', admin_customers_path %> ｜ <%= link_to 'Show', admin_customer_path(@customer) %>
+<div class="container">
+  <h2 class="text-center my-4">Admin Edit / ユーザ情報変更</h2>
+  <%= form_with model: @customer, url: admin_customer_path(@customer), class: "my-4" do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= f.label :family_name, "姓" %>
+          <%= f.text_field :family_name, autofocus: true, class: "form-control", id: "family_name" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :personal_name, "名" %>
+          <%= f.text_field :personal_name, autofocus: true, class: "form-control", id: "personal_name" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :family_name_kana, "セイ" %>
+          <%= f.text_field :family_name_kana, autofocus: true, class: "form-control", id: "family_name_kana" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :personal_name_kana, "メイ" %>
+          <%= f.text_field :personal_name_kana, autofocus: true, class: "form-control", id: "personal_name_kana" %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <%= f.label :post_code, "郵便番号" %>
+          <%= f.text_field :post_code, autofocus: true, class: "form-control", id: "post_code" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :address, "住所" %>
+          <%= f.text_field :address, autofocus: true, class: "form-control", id: "address" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :email, "email" %>
+          <%= f.text_field :email, autofocus: true, class: "form-control", id: "email" %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :phone_number, "電話番号" %>
+          <%= f.text_field :phone_number, autofocus: true, class: "form-control", id: "phone_number" %>
+        </div>
+      </div>
+    </div>
+    <div class="my-4">
+      <%= f.radio_button :status, true, id: "status_true" %>
+      <%= f.label :status_true, "有効" %>
+      <%= f.radio_button :status, false, id: "status_false" %>
+      <%= f.label :status_false, "退会" %>
+    </div>
+    <%= f.submit "Update User", class: "btn btn-primary" %>
+  <% end %>
+  <div class="my-4">
+    <%= link_to 'ユーザ詳細', admin_customer_path(@customer), class: "btn btn-secondary" %>
+    <%= link_to 'カスタマー一覧', admin_customers_path, class: "btn btn-secondary me-2" %>
+    <%= link_to '管理者TOP', admin_home_top_path, class: "btn btn-secondary me-2" %>
+  </div>
+</div>

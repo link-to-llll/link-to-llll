@@ -1,19 +1,30 @@
-<h1>User Top</h1>
+<div class="container">
+  <h1>User Top</h1>
 
-<table>
-    <th>ジャンル名検索</th>
-      <tbody>
-        <tr><% @genres.each do |genre| %></tr>
-        <td><%= genre.name %></td>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ジャンル名検索</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @genres.each do |genre| %>
+            <tr>
+              <td><%= genre.name %></td>
+            </tr>
           <% end %>
-      </tbody>
-</table>
+        </tbody>
+      </table>
+    </div>
 
-
-
-<div>ようこそ、ながのCAKEへ！</div>
-<div>このサイトは、ケーキ販売のECサイトになります。</div>
-<div>館員でない方も閲覧はできますが、</div>
-<div>購入には会員登録が必要になります。</div>
-
-  <%= link_to "すべての商品をみる>",products_path %>
+    <div class="col-md-6">
+      <div>ようこそ、ながのCAKEへ！</div>
+      <div>このサイトは、ケーキ販売のECサイトになります。</div>
+      <div>館員でない方も閲覧はできますが、</div>
+      <div>購入には会員登録が必要になります。</div>
+      <%= link_to "すべての商品をみる>", products_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

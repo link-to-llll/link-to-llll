@@ -44,7 +44,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get 'home/top'=>'homes#top'
+    root to: 'homes#top'
+    get "home/top"=> 'homes#top'
     resources :products, only: [:new, :show, :index, :create, :edit, :update, :destroy]
 
 

@@ -36,13 +36,14 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
     get 'orders/log', to: 'public/orders#log'
     get 'orders/thanks', to: 'public/orders#thanks'
-    
+
   end
 
   namespace :admin do
-    get 'home/top'=>'homes#top'
+    root to: 'homes#top'
+    get "home/top"=> 'homes#top'
     resources :products, only: [:new, :show, :index, :create, :edit, :update, :destroy]
-    
+
 
     #hashimoto-branch
     resources :genres, only: [:index, :edit, :create, :update]

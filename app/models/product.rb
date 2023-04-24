@@ -16,5 +16,7 @@ class Product < ApplicationRecord
    validates :price
    validates :image
   end
-
+  def add_tax_price
+      (price * 1.1).floor.to_s(:delimited) 
+  end 
 end

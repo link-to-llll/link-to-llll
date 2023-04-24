@@ -1,7 +1,7 @@
 class Public::ProductsController < ApplicationController
   def index
     @products = Product.all
-    @products, @sort = get_products(params)
+    
   end
   
   def show

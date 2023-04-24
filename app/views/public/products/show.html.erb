@@ -1,6 +1,48 @@
-<h1>商品詳細</h1>
-
-<p>商品名</p>
-  <span><%= @product.name %></span>
-<p>商品説明</p>
-  <span><%= @product.explanation %></span>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      
+      <h2>商品詳細</h2>
+	    <div class="field">
+	    	     商品名　　　　　<%= @product.name %>
+	    </div>
+	    <div id="img_field">
+	        <%= image_tag @product.image, size: "300x220", fallback: "no_image.jpg" %>
+	    </div>
+	    <div class="field">
+				商品説明　　　　<%= @product.explanation %>
+	    </div>
+	    <div class="field">
+				ジャンル　　　　<%= @product.genre.name %>
+	    </div>
+	    <% def price(value) %>
+        <%= (value * 1.1).floor.to_s(:delimited) %>
+      <% end %>
+	    <div class="field">
+					税込価格　　　　<%= price(@product.price) %>円
+	        								(<%= @product.price.to_s(:delimited) %>円)
+					(税抜価格)
+	    </div>
+	    <div class="field">
+					販売ステータス
+	        <% if @product.status == true %>
+						　<i class="fas fa-bullseye red"></i>販売中
+					<% elsif @product.status == false %>
+						　<i class="fas fa-bullseye blue"></i>販売停止中
+					<% end %>
+	    </div>
+      <div class="actions col-xs-9">
+      <%= form_with model: @cart_item do |f| %>
+      <%= f.label :quantity, "個数選択" %>
+      <%= f.select :quantity, *[1..99] %>
+            <%= f.hidden_field :product_id, :value => @product.id %>
+            <%= f.submit "カートに入れる" %>
+          <% end %>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>

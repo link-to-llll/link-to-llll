@@ -90,6 +90,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def sign_up_params
     params.require(:customer).permit(:email, :password, :password_confirmation, :family_name, :personal_name, :family_name_kana, :personal_name_kana, :post_code, :address, :phone_number)
   end
+
   # def configure_permitted_parameters
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :personal_name, :family_name_kana, :personal_name_kana, :post_code, :address, :phone_number])
   # end
@@ -97,5 +98,4 @@ class Public::RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
     root_path
   end
-
 end

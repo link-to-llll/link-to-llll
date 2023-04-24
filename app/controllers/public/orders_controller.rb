@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @order = Order.new
   end
@@ -20,18 +22,24 @@ class Public::OrdersController < ApplicationController
     elsif address_option == 1
       shipping = ShippingAddress.find(params[:order][:registration_shipping_address])
       #@order.order_in_postcode_address_name(shipping.shipping_postcode, shipping.shipping_address, shipping.shipping_name)
-      @oeder.shipping_postal_code = post_code
+      @order.shipping_postal_code = post_code
       @order.shipping_address - address
       @order.shipping_name = name
     elsif address_option == 2
-      @order.order_in_postcode_address_name(params[:order][:shipping_postcode], params[:order][:shipping_address], params[:order][:shipping_name])
+       @shipping_address = ShippingAddress.new(shipping_address_params) #current_customer.shipping_addresses.new...
+      @shipping_address.customer_id = current_customer.id
+      @shipping_address.save!
+      @order.shipping_postal_code = @shipping_address.post_code
+      @order.shipping_address = @shipping_address.address
+      @order.shipping_name = @shipping_address.name
     else
     end
-    unless @order.valid?
-      flash[:danger] = "お届け先の内容に不備があります<br>・#{@order.errors.full_messages.join('<br>・')}"
-      p @order.errors.full_messages
-      redirect_back(fallback_location: root_path)
-    end
+    #kここは商品の値が入ってから追加
+    # unless @order.valid?
+    #   flash[:danger] = "お届け先の内容に不備があります<br>・#{@order.errors.full_messages.join('<br>・')}"
+    #   p @order.errors.full_messages
+    #   redirect_back(fallback_location: root_path)
+    # end
     # render plain: @order.inspect
   end
   def index
@@ -60,6 +68,9 @@ class Public::OrdersController < ApplicationController
       redirect_to orders_thanks_path
     else
     end
+  end
+  def shipping_address_params
+    params.require(:shipping_address).permit(:name, :post_code, :address)
   end
 
 end

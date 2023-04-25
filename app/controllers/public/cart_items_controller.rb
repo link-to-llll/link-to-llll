@@ -4,6 +4,7 @@ before_action :authenticate_customer!
 
   def index
    @cart_items = CartItem.all
+   @sum = 0
   end
 
 
@@ -15,7 +16,7 @@ before_action :authenticate_customer!
        @total_quantity = @have_item.quantity.to_i + params[:cart_item][:quantity].to_i
        @have_item.update(quantity:@total_quantity)
        redirect_to cart_items_path
-    
+
     elsif @cart_items.save
           redirect_to cart_items_path
     end

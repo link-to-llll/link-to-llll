@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
     get 'orders/log', to: 'orders#log'
     get 'orders/thanks', to: 'orders#thanks'
-    
+
     resources :orders
     resources :cart_items, only: [:index, :create, :update, :destroy] do
       collection do
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     end
     get 'orders/log', to: 'public/orders#log'
     get 'orders/thanks', to: 'public/orders#thanks'
- 
+
   end
 
   namespace :admin do
@@ -58,6 +58,6 @@ Rails.application.routes.draw do
 
     resources :order_products, only: [:index, :show, :update]
     resources :customers
-    resources :orders, only: [:show]
+    resources :orders, only: [:index, :show]
   end
 end

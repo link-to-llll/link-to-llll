@@ -32,18 +32,18 @@ Rails.application.routes.draw do
     resources :products, only: [:show, :index]
     #get 'customer/edit' => 'customers#edit'
     #put 'customer' => 'customers#update'
-
+    
   	resource :customers do
   		collection do
   	     get 'quit'
   	     patch 'out'
   	  end
   	 end
-    resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
-
+    resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy, :show]
+    
     get 'orders/log', to: 'orders#log'
     get 'orders/thanks', to: 'orders#thanks'
-    
+
     resources :orders
     resources :cart_items, only: [:index, :create, :update, :destroy] do
       collection do
@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     end
     get 'orders/log', to: 'public/orders#log'
     get 'orders/thanks', to: 'public/orders#thanks'
- 
+
   end
 
   namespace :admin do

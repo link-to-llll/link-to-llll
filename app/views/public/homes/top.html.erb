@@ -28,3 +28,24 @@
     </div>
   </div>
 </div>
+<h2>新着商品</h2>
+ <table class="table table-hover table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>税抜価格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+          <tr>
+            <td class="text-left">
+              <%= link_to product_path(product), class: "btn-link" do %>
+                <%= product.name %>
+              <% end %>
+	            <%= image_tag product.image, size: '100x100' %>
+	          </td>
+            <td class="text-right"><%= number_to_currency(product.price, unit: "¥") %></td>
+          <% end %>
+        </tbody>
+      </table>

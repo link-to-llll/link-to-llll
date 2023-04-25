@@ -66,6 +66,6 @@ Rails.application.routes.draw do
 
     resources :order_products, only: [:index, :show, :update]
     resources :customers
-    resources :orders, only: [:show]
+    resources :orders, only: [:index, :show]
   end
 end

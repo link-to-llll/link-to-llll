@@ -1,34 +1,51 @@
- <h2>配送先登録/一覧</h2>
+<br>
+<div class="container">
+  <h2>配送先登録/一覧</h2>
+  <br>
+  <%= form_with model:@shipping_address do |f| %>
+    <div class="form-group">
+      <%= f.label :"配送先郵便番号(ハイフン無し)" %>
+      <%= f.text_field :post_code, class: 'form-control', style: 'width: 30%;' %>
+    </div>
 
-<%= form_with model:@shipping_address do |f| %>
-  <div class="form-group">
-     <%= f.label :宛名 %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="form-group">
-     <%= f.label :配送先郵便番号 %><br>
-    <%= f.text_field :post_code %>
-  </div>
-  <div class="form-group">
-     <%= f.label :配送先住所 %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="form-group">
-    <%= f.submit '新規登録' %>
-  </div>
-<% end %>
+    <div class="form-group">
+      <%= f.label :"配送先住所" %>
+      <%= f.text_field :address, class: 'form-control', style: 'width: 66.6666667%;' %>
+    </div>
 
+    <div class="form-group">
+      <%= f.label :"宛名" %>
+      <%= f.text_field :name, class: 'form-control', style: 'width: 30%;' %>
+    </div>
 
-
-
- <% @shipping_addresses.each do |shipping_addresses| %>
- <p>登録内容</p>
-  <p>宛名</p>
-  <span><%= shipping_addresses.name %></span>
-  <p>郵便番号</p>
-  <span><%= shipping_addresses.post_code %></span>
-  <p>住所</p>
-  <span><%= shipping_addresses.address %></span>
-  <%= link_to '編集', edit_shipping_address_path(shipping_addresses) %>
-  <%= link_to '削除', shipping_address_path(shipping_addresses), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%>
+    <div class="form-group">
+      <%= f.submit '新規登録', class: 'btn btn-primary' %>
+    </div>
   <% end %>
+
+<br>
+  <hr>
+<br>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shipping_addresses.each do |shipping_address| %>
+        <tr>
+          <td style="width: 10%;"><%= shipping_address.post_code %></td>
+          <td style="width: 50%;"><%= shipping_address.address %></td>
+          <td><%= shipping_address.name %></td>
+          <td><%= link_to '編集する', edit_shipping_address_path(shipping_address), class: "btn btn-sm btn-primary" %>  <%= link_to '削除する', shipping_address_path(shipping_address), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

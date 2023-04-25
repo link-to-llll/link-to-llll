@@ -8,6 +8,7 @@ class Customer < ApplicationRecord
   has_many :shipping_addresses
   has_many :cart_items, dependent: :destroy
   has_many :orders
+  has_many :products
 
   validates :email, presence: true
   validates :password, presence: true

@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h1><strong>マイページ</strong></h1>
+      <h3>メニュー</h3>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+          <%= link_to '登録情報編集', edit_customers_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '配送先一覧', shipping_addresses_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '注文履歴', orders_path, class: 'nav-link' %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <h3>会員情報</h3>
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th>氏名</th>
+            <td><%= @customer.personal_name %></td>
+            <td><%= @customer.family_name %></td>
+          </tr>
+          <tr>
+            <th>カナ</th>
+            <td><%= @customer.personal_name_kana %></td>
+            <td><%= @customer.family_name_kana %></td>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <td><%= @customer.post_code %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @customer.phone_number %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

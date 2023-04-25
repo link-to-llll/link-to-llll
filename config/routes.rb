@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   # 顧客用
   # URL /customers/sign_in ...
-  devise_for :customers,skip: [:passwords], controllers: {
+  devise_for :customer,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
@@ -23,14 +23,22 @@ Rails.application.routes.draw do
     get 'admin/sign_out' => 'admin/sessions#destroy'
   end
 
-  devise_for :users
+  #devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   scope module: :public do
     root to: "homes#top"
     get "home/about"=> 'homes#about'
     resources :products, only: [:show, :index]
+    #get 'customer/edit' => 'customers#edit'
+    #put 'customer' => 'customers#update'
 
+  	resource :customers do
+  		collection do
+  	     get 'quit'
+  	     patch 'out'
+  	  end
+  	 end
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
 
     get 'orders/log', to: 'orders#log'

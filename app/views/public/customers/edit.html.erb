@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-5">会員情報編集</h2>
+  <%= form_with(model: current_customer, url: customers_path, local: true) do |f| %>
+    <%= render "public/shared/error_messages", resource: @customer %>
+
+    <div class="form-group">
+      <%= f.label :personal_name, "姓", class: "form-label" %>
+      <%= f.text_field :personal_name, class: "form-control", placeholder: "性" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :family_name,"名", class: "form-label" %>
+      <%= f.text_field :family_name, class: "form-control", placeholder: "名" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :family_name_kana, "セイ", class: "form-label" %>
+      <%= f.text_field :family_name_kana, class: "form-control", placeholder: "セイ" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :personal_name_kana, "メイ", class: "form-label" %>
+      <%= f.text_field :personal_name_kana, class: "form-control", placeholder: "メイ" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :post_code, "郵便番号", class: "form-label" %>
+      <%= f.text_field :post_code, class: "form-control", placeholder: "郵便番号" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :address, "住所", class: "form-label" %>
+      <%= f.text_field :address, class: "form-control", placeholder: "住所" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :phone_number, "電話番号", class: "form-label" %>
+      <%= f.text_field :phone_number, class: "form-control", placeholder: "電話番号" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, "メールアドレス", class: "form-label" %>
+      <%= f.email_field :email, class: "form-control", placeholder: "メールアドレス" %>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <%= f.submit "変更を保存", class: "btn btn-primary" %>
+      <%= button_to "退会する", root_path, method: :quit, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</div>

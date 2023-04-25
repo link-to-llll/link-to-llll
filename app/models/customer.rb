@@ -11,8 +11,8 @@ class Customer < ApplicationRecord
   has_many :products
 
   validates :email, presence: true
-  validates :password, presence: true
-  validates :password_confirmation, presence: true
+  #validates :password, presence: true
+  #validates :password_confirmation, presence: true
   validates :family_name, presence: true
   validates :personal_name, presence: true
   validates :family_name_kana, presence: true

@@ -7,7 +7,7 @@
   
       <%= form_with(model:@customer, url:customer_path, local: true ,method: :put) do |f| %>
   
-        <%= render "layouts/error_messages", resource: @customer %>
+        <%= render "public/shared/error_messages", resource: @customer %>
   
         <div class="col-xs-10">
           <div class="form-group col-xs-12">

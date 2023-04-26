@@ -24,6 +24,7 @@
     <div class="form-group">
       <%= f.label :address, "お届け先" %>
       <br>
+      <%= f.radio_button :shipping_postal_code_option, 0, checked: "checked" %>
       <%= f.label :order_address, "ご自身の住所" %>
       <%= @order.postage %>
       <%= @order.shipping_postal_code %>
@@ -32,7 +33,7 @@
       <%= f.label :shipping_postal_code, "登録済住所から選択" %>
       <%= f.collection_select :shipping_postal_code, current_customer.shipping_addresses, :id, :post_code, include_blank: "選択してください" %>
       <br>
-       <%= f.radio_button :shipping_postal_code_option, :クレジットカード, checked: "checked" %>
+       <%= f.radio_button :shipping_postal_code_option, 2 %>
 
       <%= f.label :order_address, "新しいお届け先" %>
       <br>

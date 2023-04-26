@@ -9,7 +9,7 @@ class Public::OrdersController < ApplicationController
       @order = Order.new
       @cart_items = CartItem.where(customer_id: current_customer.id)
       customer = current_customer
-      address_option = params[:order][:address_option].to_i
+      address_option = params[:order][:shipping_postal_code_option].to_i
 
       @order.payment_method = params[:order][:payment_option].to_i
       #@order.temporary_information_input(customer.id)
@@ -20,11 +20,11 @@ class Public::OrdersController < ApplicationController
         @order.shipping_address = customer.address
         @order.shipping_name = customer.family_name + customer.personal_name
       elsif address_option == 1
-        shipping = ShippingAddress.find(params[:order][:registration_shipping_address])
+        shipping = ShippingAddress.find(params[:order][:shipping_postal_code])
         #@order.order_in_postcode_address_name(shipping.shipping_postcode, shipping.shipping_address, shipping.shipping_name)
-        @order.shipping_postal_code = post_code
-        @order.shipping_address - address
-        @order.shipping_name = name
+        @order.shipping_postal_code = shipping.post_code
+        @order.shipping_address = shipping.address
+        @order.shipping_name = shipping.name
       elsif address_option == 2
         @shipping_address = ShippingAddress.new(shipping_address_params) #current_customer.shipping_addresses.new...
         @shipping_address.customer_id = current_customer.id

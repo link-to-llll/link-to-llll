@@ -3,7 +3,7 @@
   <table class='table table-hover table-inverse'>
     <thead>
       <tr>
-        <th>注文日時</th>
+        <th>購入者</th>
         <th>購入者</th>
         <th>注文個数</th>
         <th>注文ステータス</th>
@@ -12,15 +12,14 @@
     <tbody>
      <% @orders.each do |order| %>
       <tr>
-         <td><%= link_to admin_orders_path(order) do %>
-          <%= order.updated_at %>
+         <td><%= link_to admin_order_path(order) do %>
+            <%#= link_to admin_orders_path(order_id: order.id) do %>
+            <%= order.created_at.strftime('%Y/%m/%d') %>
            <% end %>
         <td><%= order.shipping_name %></td>
-      　<td><%= order.order_products %></td>
-        <td><%= order.status %></td>
-        </td>
-
-      </tr>
+      　<td><%= order.order_products.sum(:quantity) %></td>
+        <td><%= order.status_i18n %></td>
+       </tr>
     <% end %>
   </tbody>
 </table>

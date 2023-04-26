@@ -1,2 +1,21 @@
-<h2><%= @customer %>さんの注文履歴</h2>
+<h2>さんの注文履歴</h2>
+
+<table class='table table-hover table-inverse'>
+<thead>
+  <tr>
+    <th>購入日時</th>
+    <th>注文個数</th>
+    <th>ステータス</th>
+  </tr>
+</thead>
+  <tbody>
+    <tr>
+      <% @order.order_products. each do |order_product| %>
+       <td><%= order_product.created_at %></td>
+        <td><%= order_product.quantity %></td>
+      <td><%= order_product.status %></td>
+     <% end %>
+    </tr>
+  </tbody>
+</table>
 

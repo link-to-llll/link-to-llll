@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :products, only: [:show, :index]
     #get 'customer/edit' => 'customers#edit'
     #put 'customer' => 'customers#update'
-    
+
   	resource :customers do
   		collection do
   	     get 'quit'
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   	  end
   	 end
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy, :show]
-    
+
     get 'orders/log', to: 'orders#log'
     get 'orders/thanks', to: 'orders#thanks'
 
@@ -66,6 +66,6 @@ Rails.application.routes.draw do
 
     resources :order_products, only: [:index, :show, :update]
     resources :customers
-    resources :orders, only: [:index, :show]
+    resources :orders, only: [:index, :show, :update]
   end
 end

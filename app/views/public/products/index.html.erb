@@ -10,7 +10,9 @@
           <div class="col-md-3">
             <div class="card">
               <%#= link_to image_tag(product.image, size: '300x200', style: 'object-fit: cover;'), product_path(product), class: "card-img-top" %>
-              <%= image_tag product.image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+              <%= link_to product_path(product) do %>
+                <%= image_tag product.image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+              <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= product.name %></h5>
                 <p class="card-text"><%= number_to_currency(product.price, unit: "¥", precision: 0) %></p>

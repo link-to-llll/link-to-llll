@@ -8,6 +8,7 @@ before_action :authenticate_customer!
   end
 
 
+
   def create
     @cart_items = CartItem.new(cart_item_params)
     @cart_items.customer_id = current_customer.id

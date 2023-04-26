@@ -1,54 +1,46 @@
+<br>
+<br>
 <div class="container">
+
   <div>
   <%= flash[:notice] %>
   </div>
   <h1>User Top</h1>
 
   <div class="row">
-    <div class="col-md-6">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ジャンル名検索</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @genres.each do |genre| %>
-            <tr>
-              <td><%= genre.name %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="col-md-6">
-      <div>ようこそ、ながのCAKEへ！</div>
-      <div>このサイトは、ケーキ販売のECサイトになります。</div>
-      <div>館員でない方も閲覧はできますが、</div>
-      <div>購入には会員登録が必要になります。</div>
-      <%= link_to "すべての商品をみる>", products_path, class: "btn btn-primary" %>
+    <div class="col-md-3"></div>
+    <div class="col-md-5 px-0">
+      <div class="col-md-3"></div>
+      <div style="background-color: #f8d7da; padding: 10px;">
+        <h2 style="color: #721c24;">ようこそ、ながのCAKEへ！</h2>
+        <p style="color: #721c24;">このサイトは、ケーキ販売のECサイトです。</p>
+        <p style="color: #721c24;">会員登録しなくても閲覧できますが、</p>
+        <h4 style="color: #721c24;">購入するには必ず会員登録が必要です！</h4>
+      </div>
     </div>
   </div>
 </div>
-<h2>新着商品</h2>
- <table class="table table-hover table-bordered table-condensed">
-        <thead>
-          <tr>
-            <th>商品名</th>
-            <th>税抜価格</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @products.each do |product| %>
-          <tr>
-            <td class="text-left">
-              <%= link_to product_path(product), class: "btn-link" do %>
-                <%= product.name %>
-              <% end %>
-	            <%= image_tag product.image, size: '100x100' %>
-	          </td>
-            <td class="text-right"><%= number_to_currency(product.price, unit: "¥") %></td>
+
+<br>
+
+<div class="container">
+  <h2>新着商品</h2>
+  <div class="row">
+    <% @products.limit(4).each do |product| %>
+      <div class="col-md-3 mb-3">
+        <div class="card">
+          <%= link_to product_path(product) do %>
+            <%= image_tag product.image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
           <% end %>
-        </tbody>
-      </table>
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text"><%= number_to_currency(product.price, unit: "¥", precision: 0) %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="text-right">
+    <%= link_to "全ての商品を見る", products_path %>
+  </div>
+</div>

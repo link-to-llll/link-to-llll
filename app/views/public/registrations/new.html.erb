@@ -1,6 +1,6 @@
 <br>
 <div class="container">
-  <h2>会員登録</h2>
+  <h2>新規会員登録</h2>
   <%#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-signup" }) do |f| %>
   <%= form_for(resource, as: resource_name, url: customer_registration_path, html: { class: "form-signup" }) do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
@@ -34,7 +34,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="form-group">
       <%= f.label :post_code,"郵便番号" %>
@@ -70,8 +69,15 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "ユーザ登録", class: "btn btn-primary" %>
+      <%= f.submit "新規登録", class: "btn btn-primary" %>
     </div>
   <% end %>
+  
+  <!-- 既に登録済みの方はこちらからログインしてください -->
+  <div class="row mt-5">
+    <div class="col-md-12 text-center">
+      <p>すでに登録済みの方は<a href="<%= new_customer_session_path %>">こちら</a>からログインしてください。</p>
+    </div>
+  </div>
 
 </div>

@@ -1,37 +1,93 @@
-<div class='container'>
-  <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h2>商品詳細</h2>
-	    <div class="field">
-	    	     商品名　　　　　<%= @product.name %>
-	    </div>
-	    <div id="img_field">
-	        <%= image_tag @product.image, size: "300x220", fallback: "no_image.jpg" %>
-	    </div>
-	    <div class="field">
-				商品説明　　　　<%= @product.explanation %>
-	    </div>
-	    <div class="field">
-				ジャンル　　　　<%= @product.genre.name %>
-	    </div>
-	    <% def price(value) %>
-        <%= (value * 1.1).floor.to_s(:delimited) %>
-      <% end %>
-	    <div class="field">
-					税込価格　　　　<%= price(@product.price) %>円
-	        								(<%= @product.price.to_s(:delimited) %>円)
-					(税抜価格)
-	    </div>
-	    <div class="field">
-					販売ステータス
-	        <% if @product.status == true %>
-						　<i class="fas fa-bullseye red"></i>販売中
-					<% elsif @product.status == false %>
-						　<i class="fas fa-bullseye blue"></i>販売停止中
-					<% end %>
-	    </div>
-		  <div class="actions col-xs-9">
-	      		<%= link_to "編集する", edit_admin_product_path(@product), data: {"turbolinks" => false}, class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-lg-4">
+    	<br>
+    	商品詳細
+    	<br>
+      <%= image_tag @product.image, size: "300x220", fallback: "no_image.jpg" %>
+    </div>
+
+    <div class="col-md-6 col-lg-8">
+		    <br>
+		    <br>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="field">
+            商品名
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="field">
+            <%= @product.name %>
+          </div>
+        </div>
+        <div class="col-sm-4">
+        	<br>
+          <div class="field">
+            商品説明
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="field">
+          	<br>
+            <%= @product.explanation %>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="field">
+          	<br>
+            ジャンル
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="field">
+          	<br>
+            <%= @product.genre.name %>
+          </div>
+        </div>
+        <% def price(value) %>
+          <%= (value * 1.1).floor.to_s(:delimited) %>
+        <% end %>
+        <div class="col-sm-4">
+          <div class="field">
+          	<br>
+            税込価格
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="field">
+          	<br>
+            <%= price(@product.price) %>円
+            (<%= @product.price.to_s(:delimited) %>円)
+            (税抜価格)
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="field">
+          	<br>
+            販売ステータス
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="field">
+          	<br>
+            <% if @product.status == true %>
+              <!--<i class="fas fa-bullseye red"></i> <span style="color:green;font-weight:bold;">販売中</span>-->
+              <i class="fas fa-bullseye" style="color:green;"></i> <span style="color:green;font-weight:bold;">販売中</span>
+            <% elsif @product.status == false %>
+              <!--<i class="fas fa-bullseye blue"></i> <span style="color:green;font-weight:bold;">販売停止中</span>-->
+              <i class="fas fa-times" style="color:red;"></i> <span style="color:red;font-weight:bold;">販売停止中</span>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="actions">
+          	<br>
+            <%= link_to "編集する", edit_admin_product_path(@product), data: {"turbolinks" => false}, class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

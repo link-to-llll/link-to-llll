@@ -26,44 +26,57 @@
             <!-- 商品一覧 追記2023/04/22　18：30 suzuki -->
             <li class="nav-item">
               <%= link_to products_path ,class: 'nav-link text-light' do %>
-                <i class="fab fa-product-hunt"></i> Products
+                <i class="fab fa-product-hunt"></i> 商品一覧
+              <% end %>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to cart_items_path ,class: 'nav-link text-light' do %>
+                <i class="fas fa-shopping-cart"></i> カート
               <% end %>
             </li>
 
             <li class="nav-item">
               <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-light' do %>
-                <i class="fas fa-sign-out-alt"></i> Log out
+                <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
             </li>
 
           <!-- admin -->
           <% elsif admin_signed_in? %>
 
-            <!-- ユーザ一覧 追記2023/04/23　11：40 suzuki -->
-            <li class="nav-item">
-              <%= link_to admin_customers_path,class: 'nav-link text-light' do %>
-                <i class="fas fa-users"></i> User list
-              <% end %>
-            </li>
-            
             <!-- 商品一覧 追記2023/04/23　12：20 suzuki -->
             <li class="nav-item">
               <%= link_to admin_products_path,class: 'nav-link text-light' do %>
-                <i class="fab fa-product-hunt"></i> Products list
+                <i class="fab fa-product-hunt"></i> 商品一覧
+              <% end %>
+            </li>
+
+            <!-- ユーザ一覧 追記2023/04/23　11：40 suzuki -->
+            <li class="nav-item">
+              <%= link_to admin_customers_path,class: 'nav-link text-light' do %>
+                <i class="fas fa-users"></i> 会員一覧
               <% end %>
             </li>
             
+            <!-- 注文履歴一覧 追記2023/04/25　22：26 suzuki -->
+            <li class="nav-item">
+              <%= link_to admin_orders_path,class: 'nav-link text-light' do %>
+                <i class="fas fa-clipboard-list"></i> 注文履歴一覧
+              <% end %>
+            </li>
+
             <!-- ジャンル 追記2023/04/23　11：40 suzuki -->
             <li class="nav-item">
               <%= link_to admin_genres_path,class: 'nav-link text-light' do %>
-                <i class="fas fa-toolbox"></i> Genres list
+                <i class="fas fa-toolbox"></i> ジャンル一覧
               <% end %>
             </li>
 
             <!-- sign out -->
             <li class="nav-item">
               <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
-                <i class="fas fa-sign-out-alt"></i> Log out
+                <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
             </li>
        
@@ -79,21 +92,21 @@
             <!-- 商品一覧 追記2023/04/22　18：30 suzuki -->
             <li class="nav-item">
               <%= link_to products_path ,class: 'nav-link text-light' do %>
-                <i class="fab fa-product-hunt"></i> Products
+                <i class="fab fa-product-hunt"></i> 商品一覧
               <% end %>
             </li>
 
             <!--新規登録 -->
             <li class="nav-item">
               <%= link_to new_customer_registration_path,class: 'nav-link text-light' do %>
-                <i class="fas fa-user-plus"></i> Sign up
+                <i class="fas fa-user-plus"></i> 会員登録
               <% end %>
             </li>
             
             <!-- ログイン -->
             <li class="nav-item">
               <%= link_to new_customer_session_path ,class: 'nav-link text-light' do %>
-                <i class="fas fa-sign-in-alt"></i> Log in
+                <i class="fas fa-sign-in-alt"></i> ログイン
               <% end %>
             </li>
 

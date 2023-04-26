@@ -2,7 +2,7 @@
 <div class="container">
   <h2>配送先登録/一覧</h2>
   <br>
-  <%= form_with model:@shipping_address do |f| %>
+  <%= form_with model: @shipping_address do |f| %>
     <div class="form-group">
       <%= f.label :"配送先郵便番号(ハイフン無し)" %>
       <%= f.text_field :post_code, class: 'form-control', style: 'width: 30%;' %>

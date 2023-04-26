@@ -1,5 +1,5 @@
 class Public::ShippingAddressesController < ApplicationController
-  
+
 
   def index
     @shipping_address = ShippingAddress.new
@@ -28,7 +28,7 @@ class Public::ShippingAddressesController < ApplicationController
       render "edit"
     end
   end
- 
+
  def destroy
     @shipping_address = ShippingAddress.find(params[:id])
     @shipping_address.destroy

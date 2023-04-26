@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   	resource :customers do
   		collection do
   	     get 'quit'
-  	     patch 'out'
+  	     patch 'withdraw'
   	  end
   	 end
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy, :show]

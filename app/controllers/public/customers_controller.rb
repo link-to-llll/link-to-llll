@@ -26,7 +26,7 @@ class Public::CustomersController < ApplicationController
   
   def withdraw
     @customer = current_customer
-    @customer.update(is_valid: true)
+    @customer.update(status: false)
 
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"

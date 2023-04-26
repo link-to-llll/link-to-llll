@@ -37,7 +37,7 @@
     </div>
     <div class="d-flex justify-content-between align-items-center">
       <%= f.submit "変更を保存", class: "btn btn-primary" %>
-      <%= button_to "退会する", root_path, method: :quit, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
     </div>
   <% end %>
+      <%= button_to "退会する", quit_customers_path, method: :get, class: "btn btn-danger" %>
 </div>

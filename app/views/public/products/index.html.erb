@@ -1,45 +1,31 @@
+<br>
+<br>
+
 <div class="container">
-  <h2 class="head-line title_h2 text-center admin_product_index">商品一覧(全<%=@products.count %>件)</h2>
+  <h2 class="head-line title_h2 text-center admin_product_index">商品一覧(全<%=@products.total_count %>件)</h2>
   <div class="row">
-    <div>
-
-      <table class="table table-hover table-bordered table-condensed">
-        <thead>
-          <tr>
-            <th>商品ID</th>
-            <th>商品名</th>
-            <th>商品画像</th>
-            <th>税抜価格</th>
-            <th>ジャンル</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @products.each do |product| %>
-          <tr>
-            <td><%= product.id %></td>
-            <td class="text-left">
-              <%= link_to product_path(product), class: "btn-link" do %>
-                <%= product.name %>
-              <% end %>
-            </td>
-            <td>
-	            <%= image_tag product.image, size: '300x200' %>
-	          </td>
-            <td class="text-right"><%= number_to_currency(product.price, unit: "¥") %></td>
-            <td><%= product.genre.name %></td>
-            <td>
-              <% if product.status == true %>
-                <p><i class="fas fa-bullseye red"></i>販売中</p>
-              <% elsif product.status == false %>
-                <p><i class="fas fa-bullseye blue"></i>販売停止中</p>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <% @products.in_groups_of(4, false).each do |product_group| %>
+      <div class="row">
+        <% product_group.each do |product| %>
+          <div class="col-md-3">
+            <div class="card">
+              <%#= link_to image_tag(product.image, size: '300x200', style: 'object-fit: cover;'), product_path(product), class: "card-img-top" %>
+              <%= image_tag product.image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+              <div class="card-body">
+                <h5 class="card-title"><%= product.name %></h5>
+                <p class="card-text"><%= number_to_currency(product.price, unit: "¥", precision: 0) %></p>
+                <p class="card-text"><%= product.genre.name %></p>
+                <% if product.status == true %>
+                  <i class="fas fa-bullseye" style="color:green;"></i> <span style="color:green;font-weight:bold;">販売中</span>
+                <% elsif product.status == false %>
+                  <i class="fas fa-times" style="color:red;"></i> <span style="color:red;font-weight:bold;">販売停止中</span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
+  <%= paginate @products %>
 </div>
-

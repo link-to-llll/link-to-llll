@@ -1,69 +1,104 @@
-<h1>注文情報詳細</h1>
+<br>
+<br>
+<div class="container">
+  <h3>注文情報詳細</h3>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-hover table-inverse">
+          <thead>
+            <tr>
+              <th>購入者</th>
+              <th>注文日</th>
+              <th>配送先</th>
+              <th>支払方法</th>
+              <th>注文ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to admin_customer_path(@customer) do %>
+                  <%= @order.shipping_name %>
+                <% end %>
+              </td>
+              <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+              <td>
+                〒<%= @order.shipping_postal_code %><br>
+                <%= @order.shipping_address %><br>
+                <%= @order.shipping_name %>
+              </td>
+              <td><%= @order.payment_method_i18n %></td>
+              <td>
+                <%= form_with model: @order, method: :patch, url: admin_order_path(@order), class: "d-flex justify-content-between align-items-center" do |f| %>
+                  <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]}, {}, class: "form-select me-2" %>
+                  <%= f.submit '更新', class: "btn btn-primary" %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table class='table table-hover table-inverse'>
-<thead>
-  <tr>
-    <th>購入者</th>
-    <th>注文日</th>
-    <th>配送先</th>
-    <th>支払方法</th>
-    <th>注文ステータス</th>
-  </tr>
-</thead>
-  <tbody>
-    <tr>
-      <td><%= link_to admin_customer_path(@customer) do %>
-          <%= @order.shipping_name %>
-           <% end %>
-      </td>
-       <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-        <td>〒<%= @order.shipping_postal_code %><br>
-            <%= @order.shipping_address %><br>
-            <%= @order.shipping_name %>
+<br>
+<br>
+
+<div class="container">
+  <h3>商品名</h3>
+  <table class="table table-hover table-inverse">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>製作ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.order_products.each do |order_product| %>
+      <tr>
+        <td><%= order_product.product.name %></td>
+        <td><%= order_product.buy_price %></td>
+        <td><%= order_product.quantity %></td>
+        <td><%= order_product.sum_price %></td>
+        <td>
+          <%= form_with model: order_product, method: :patch, url: admin_order_product_path(order_product) do |f| %>
+          <div class="input-group">
+            <%= f.select :status, OrderProduct.statuses.keys.map {|k| [I18n.t("enums.order_product.status.#{k}"), k]}, class: "form-control" %>
+            <div class="input-group-append">
+              <%= f.submit '更新', class: "btn btn-outline-secondary" %>
+            </div>
+          </div>
+          <% end %>
         </td>
-      <td><%= @order.payment_method_i18n %></td>
-      <td><%= form_with model: @order, method: :patch, url: admin_order_path(@order) do |f| %>
-          <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-          <%#= f.select :category, Book.categories.keys.map {|k| [I18n.t("enums.book.category.#{k}"), k]} %>
-          <%= f.submit '更新' %>
-         <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<br>
+<br>
 
-<h2>商品名</h2>
-<table class='table table-hover table-inverse'>
-<thead>
-  <tr>
-    <th>商品名</th>
-    <th>単価（税込）</th>
-    <th>数量</th>
-    <th>小計</th>
-    <th>製作ステータス</th>
-  </tr>
-</thead>
-  <tbody>
-    <% @order.order_products. each do |order_product| %>
-    <tr>
-      <td><%= order_product.product.name %></td>
-      <td><%= order_product.buy_price %></td>
-      <td><%= order_product.quantity %></td>
-      <td><%= order_product.sum_price %></td>
-      <td><%= form_with model: order_product, method: :patch, url: admin_order_product_path(order_product) do |f| %>
-          <%= f.select :status, OrderProduct.statuses.keys.map {|k| [I18n.t("enums.order_product.status.#{k}"), k]} %>
-          <%= f.submit '更新' %>
-         <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<th>商品合計</th>
-<th><%= @order.amount_billed - 800 %></th>
-<th>送料</th>
-<th><%= @order.postage %></th>
-<th>請求額合計</th>
-<th><%= @order.amount_billed %></th>
+<div class="container">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th class="text-center">商品合計</th>
+        <td class="text-center"><%= @order.amount_billed - 800 %> 円</td>
+      </tr>
+      <tr>
+        <th class="text-center">送料</th>
+        <td class="text-center"><%= @order.postage %> 円</td>
+      </tr>
+      <tr>
+        <th class="text-center">請求額合計</th>
+        <td class="text-center"><%= @order.amount_billed %> 円</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

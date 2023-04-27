@@ -1,17 +1,18 @@
 <br>
 <br>
+
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-lg-4">
-    	<br>
-    	商品詳細
-    	<br>
+      <br>
+      商品詳細
+      <br>
       <%= image_tag @product.image, size: "300x220", fallback: "no_image.jpg" %>
     </div>
 
     <div class="col-md-6 col-lg-8">
-		    <br>
-		    <br>
+      <br>
+      <br>
       <div class="row">
         <div class="col-sm-4">
           <div class="field">
@@ -37,7 +38,7 @@
         </div>
         <div class="col-sm-4">
           <div class="field">
-          	<br>
+            <br>
             ジャンル
           </div>
         </div>
@@ -52,13 +53,13 @@
         <% end %>
         <div class="col-sm-4">
           <div class="field">
-          	<br>
+            <br>
             税込価格
           </div>
         </div>
         <div class="col-sm-8">
           <div class="field">
-          	<br>
+            <br>
             <%= price(@product.price) %>円
             (<%= @product.price.to_s(:delimited) %>円)
             (税抜価格)
@@ -72,7 +73,7 @@
         </div>
         <div class="col-sm-8">
           <div class="field">
-          	<br>
+            <br>
             <% if @product.status == true %>
               <!--<i class="fas fa-bullseye red"></i> <span style="color:green;font-weight:bold;">販売中</span>-->
               <i class="fas fa-bullseye" style="color:green;"></i> <span style="color:green;font-weight:bold;">販売中</span>
@@ -84,7 +85,7 @@
         </div>
         <div class="col-sm-12">
           <div class="actions">
-          	<br>
+            <br>
             <%= link_to "編集する", edit_admin_product_path(@product), data: {"turbolinks" => false}, class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
           </div>
         </div>

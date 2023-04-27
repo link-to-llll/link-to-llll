@@ -1,5 +1,5 @@
 class Public::CartItemsController < ApplicationController
-before_action :authenticate_customer!
+  before_action :authenticate_customer!
 
 
   def index
@@ -28,28 +28,29 @@ before_action :authenticate_customer!
   end
 
   def update
-      @cart_items = CartItem.find(params[:id])
-       if @cart_items.update(cart_item_params)
+    @cart_items = CartItem.find(params[:id])
+    if @cart_items.update(cart_item_params)
       redirect_to cart_items_path
     else
       render :edit
     end
   end
 
-
- def destroy
+  def destroy
     @cart_items = CartItem.find(params[:id])
     @cart_items.destroy
     redirect_to cart_items_path
- end
-
-def all_destroy  #カート内全て削除
+  end
+  
+  def all_destroy  #カート内全て削除
     cart_items = CartItem.all
     cart_items.destroy_all
     redirect_to cart_items_path
-end
+  end
+
 
   private
+  
   def cart_item_params
       params.require(:cart_item).permit(:product_id, :quantity)
   end

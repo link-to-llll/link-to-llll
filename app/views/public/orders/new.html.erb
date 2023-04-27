@@ -10,11 +10,11 @@
         <div class="form-group">
           <%= f.label :payment, "支払い方法" %>
           <br>
-          <%= f.radio_button :payment, :クレジットカード, checked: "checked" %>
-          <%= f.label :payment, "クレジットカード" %>
+          <%= f.radio_button :payment_method, :credit_card, checked: "checked" %>
+          <%= f.label :payment_method, "クレジットカード" %>
           <br>
-          <%= f.radio_button :payment, :銀行振込 %>
-          <%= f.label :payment, "銀行振込" %>
+          <%= f.radio_button :payment_method, :transfer %>
+          <%= f.label :payment_method, "銀行振込" %>
         </div>
       </div>
     </div>

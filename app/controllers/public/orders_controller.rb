@@ -6,12 +6,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def log
-    @order = Order.new
+    @order = Order.new(order_params)
     @cart_items = CartItem.where(customer_id: current_customer.id)
     customer = current_customer
     address_option = params[:order][:shipping_postal_code_option].to_i
 
-    @order.payment_method = params[:order][:payment_option].to_i
+    #@order.payment_method = params[:order][:payment_option].to_i
     #@order.temporary_information_input(customer.id)
 
     if address_option == 0
